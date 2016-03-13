@@ -1,0 +1,38 @@
+<html>
+<head>
+	<title>获取样式</title>
+	<style type="text/css">
+     #div{
+     	width:200px;
+     	height:200px;
+     	background-color: red;
+     	border: 1px solid black;
+     }
+	</style>
+	<script type="text/javascript">
+      window.onload=function(){
+      	startmove();
+
+      }
+      function startmove(){
+      	var div=document.getElementById('div');
+      	setInterval(function(){
+      	
+      	div.style.width=parseInt(getstyle(div,"width"))-1+'px';
+      	},30)
+      }
+      function getstyle(obj,attr){
+      	if(obj.currentStyle){
+      		return obj.currentStyle[attr];
+      	}
+      	else{
+      		return getComputedStyle(obj,false)[attr];
+      	}
+
+      }
+	</script>
+</head>
+<body>
+  <div id='div' style="width:200px"></div>
+</body>
+</html>

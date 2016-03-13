@@ -1,0 +1,66 @@
+
+<html>
+<head>
+	<title>缓冲</title>
+	<style type="text/css">
+       body,div{
+       	margin: 0;
+       	padding:0;
+
+       }   
+       #main{
+       	width:200px;
+       	height:200px;
+       	background-color: red;
+       	position:relative; 
+       	left:-200px;
+       	top:0;}
+    
+       #main span{
+       display: block;
+       position: absolute;
+       left:200px;
+       	width:50px;
+       	height:100px;
+       	background-color: yellow;
+       	line-height: 100px;
+       	cursor: pointer;
+       	
+       }
+	</style>
+	<script type="text/javascript">
+       window.onload=function(){
+       	var main=document.getElementById('main');
+       	main.onmouseover=function(){
+             startmove(0);
+	};
+       	main.onmouseout=function(){
+       		
+       			startmove(-200);
+       	};
+}
+        var time="";
+       	function startmove(mb){
+       		clearInterval(time);
+       		var main=document.getElementById('main');
+       		var speed=(mb-main.offsetLeft)/50;
+                  speed=speed>0?Math.ceil(speed):Math.floor(speed);
+                  time=setInterval(function(){
+            	if(main.offsetLeft==mb){
+            		clearInterval(time);
+            	}else
+                  main.style.left=main.offsetLeft+speed+'px';
+
+                  },30);
+       	}
+ 
+       
+	</script>
+</head>
+<body>
+   
+     <div id="main"><span>分享</span></div>
+     
+   
+</body>
+</html>

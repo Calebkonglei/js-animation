@@ -1,0 +1,58 @@
+<html>
+<head>
+	<title>透明度动画</title>
+	<style type="text/css">
+       div{
+       	width:200px;
+       	height: 200px;
+       	background-color: red;
+       	opacity: 0.3;
+       	filter:alpha(opacity:30);
+        float: left;
+        margin-left: 10px;
+       }
+	</style>
+	<script type="text/javascript">
+     window.onload=function(){
+      var main=document.getElementsByTagName('div');
+      for(var i=0;i<main.length;i++){
+        main[i].time="";
+        main[i].alpha=30;
+      main[i].onmouseover=function(){
+        startmove(this,100);
+      };
+      main[i].onmouseout=function(){
+        startmove(this,30);
+      };
+      }
+     }
+     
+     function startmove(obj,target){
+        
+        clearInterval(obj.time);
+        obj.time=setInterval(function(){
+          var speed=0;
+          if(obj.alpha>target){
+            speed=-10;
+          }
+          else{
+            speed=10;
+          }
+            if(obj.alpha==target){
+              clearInterval(obj.time);
+            }
+            else{
+               obj.alpha+=speed;
+               obj.style.filter='alpha(opacity:'+obj.alpha+')';//ie
+               obj.style.filter=obj.alpha/100;
+            }
+        },30);
+     }
+	</script>
+</head>
+<body>
+    <div class="main"></div>
+    <div class="main"></div>
+    <div class="main"></div>
+</body>
+</html>
